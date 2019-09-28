@@ -18,3 +18,15 @@
 
 
 
+### docker-machine create -d "virtualbox" default
+
+使用virtualbox引擎创建default名字的虚拟机
+
+
+
+### docker-machine rm default
+
+删除default名字的虚拟机
+
+
+

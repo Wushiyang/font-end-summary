@@ -15,9 +15,13 @@ net.createServer(socket => {
     socket.on('end', data => {
         console.log('Client disconnect!')
     })
-    socket.setTimeout(3000, () => {
-        console.log('timeout,disconnect!!!')
-        socket.write('timeout,disconnect!!!\n\r')
-        socket.end()
+
+    socket.on('error', error => {
+        console.log('Socket Error:', error)
     })
+    // socket.setTimeout(3000, () => {
+    //     console.log('timeout,disconnect!!!')
+    //     socket.write('timeout,disconnect!!!\n\r')
+    //     socket.end()
+    // })
 }).listen(8000)

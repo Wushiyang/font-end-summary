@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <style>
+        #app{
+            margin-bottom: 50px
+        }
         .fade-enter-active, .fade-leave-active{
             transition: opacity .5s;
         }
@@ -53,6 +56,43 @@
         <transition name="bounce">
             <p v-if="show2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
         </transition>
+        <h2>多元素过渡</h2>
+        <h3>使用key标记触发transition</h3>
+        <transition name="fade">
+            <!-- <button @click="isPut?putTableData():deleteTableData()" :key="isPut">{{isPut?'Put':'Delete'}}</button> -->
+            <button @click="putTableData()" v-if="isPut" key="Put">Put</button>
+            <button @click="deleteTableData()" v-else key="Delete">Delete</button>
+        </transition>
+        <h3>不使用:key标记，会使用同一个元素，无法通过添加，删除或更新来触发transition组件</h3>
+        <transition name="fade">
+                <button @click="putTableData()" v-if="isPut">Put</button>
+                <button @click="deleteTableData()" v-else>Delete</button>
+            </transition>        
+        <transition name="fade">
+            <table border="1" v-if="table.length > 0">
+                <tr v-for="(item, ind) in table" :key="ind">
+                    <td v-for="(it, i) in item" :key="it">{{it}}</td>
+                </tr>
+            </table>
+            <p v-else>sorry,here is no data</p>
+        </transition>
+        <hr />
+        <h2>过渡模式</h2>
+        <h3>in-out</h3>
+        <transition name="fade" mode="in-out">
+            <button @click="isPut = !isPut" :key="isPut?'p':'d'" >{{isPut?'put':'delete'}}</button>
+        </transition>
+        <h3>out-in</h3>
+        <transition name="fade" mode="out-in">
+            <button @click="isPut = !isPut" :key="isPut?'p2':'d2'" >{{isPut?'put':'delete'}}</button>
+        </transition>
+        <hr />
+        <h1>多组件过渡</h1>
+        <button @click="toggleCpt = !toggleCpt">toggleCpt</button>
+        <transition name="fade">
+            <component :is="toggleCpt?'cpt-a':'cpt-b'"></component>
+        </transition>
+        <hr />
     </div>
     
 <script>
@@ -60,9 +100,32 @@
         el: '#app',
         data: {
             show: true,
-            show2: true
+            show2: true,
+            table: [],
+            isPut: true,
+            toggleCpt: true
+        },
+        components: {
+            'cpt-a': {
+                template: '<div>component A</div>'
+            },
+            'cpt-b': {
+                template: '<div>component B</div>'
+            }            
         },
         methods: {
+            putTableData(){
+                this.isPut = false
+                this.table = [
+                        [11,12,13,14],
+                        [21,22,23,24],
+                        [31,32,33,34]
+                    ]
+            },
+            deleteTableData(){
+                this.isPut = true
+                this.table = []
+            },
             transitionend(){
                 console.log('transitionend')
             },

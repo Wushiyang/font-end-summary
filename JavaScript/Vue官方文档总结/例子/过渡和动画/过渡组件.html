@@ -1,0 +1,97 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .fade-enter-active, .fade-leave-active{
+            transition: opacity .5s;
+        }
+        .fade-enter, .fade-leave-to{
+            opacity: 0;
+        }
+        .bounce-enter-active{
+            animation: bounce-in .5s;
+        }
+        .bounce-leave-active{
+            animation: bounce-in .5s reverse;
+        }
+        @keyframes bounce-in{
+            0%{
+                transform: scale(0)
+            }
+            50%{
+                transform: scale(1.5)
+            }
+            100%{
+                transform: scale(1)  
+            }
+        }
+    </style>
+    <script src="../vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <h1>过渡和动画</h1>
+        <h2>过渡</h2>
+        <button @click="show = !show">toggle</button>
+        <transition name="fade"
+            @before-enter="beforeEnter"
+            @enter="enter"
+            @after-enter="afterEnter"
+            @enter-cancelled="enterCancelled"
+            @before-leave="beforeLeave"
+            @leave="leave"
+            @after-leave="afterLeave"
+            @leave-cancelled="leaveCancelled">            
+            <p v-if="show" @transitionend="transitionend">hello</p>
+        </transition>
+        <hr />
+        <h2>动画</h2>
+        <button @click="show2 = !show2">toggle</button>
+        <transition name="bounce">
+            <p v-if="show2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris facilisis enim libero, at lacinia diam fermentum id. Pellentesque habitant morbi tristique senectus et netus.</p>
+        </transition>
+    </div>
+    
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            show: true,
+            show2: true
+        },
+        methods: {
+            transitionend(){
+                console.log('transitionend')
+            },
+            beforeEnter(){
+                console.log('beforeEnter')
+            },
+            enter(){
+                console.log('enter')
+            },
+            afterEnter(){
+                console.log('afterEnter')
+            },
+            enterCancelled(){
+                console.log('enterCancelled')    
+            },
+            beforeLeave(){
+                console.log('beforeLeave')
+            },
+            leave(){
+                console.log('leave')
+            },
+            afterLeave(){
+                console.log('afterLeave')
+            },
+            leaveCancelled(){
+                console.log('leaveCancelled')    
+            }            
+        }
+    })
+</script>
+</body>
+</html>

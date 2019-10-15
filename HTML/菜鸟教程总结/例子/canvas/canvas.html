@@ -1,0 +1,80 @@
+<html lang="ch">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #canvas{
+            border: 1px solid;
+            background-color: #0f0;
+            margin:0 auto;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="panel">
+        <p>x: null</p>
+        <p>y: null</p>
+    </div>
+    <canvas id="canvas" width="1000" height="500"></canvas>
+    <script>
+        let canvas = document.getElementById('canvas');
+        let ctx =  canvas.getContext('2d');
+        let pos = [0, 0];
+        canvas.onmousemove = function(e){
+            const target = e.target;
+            const p1 = document.querySelector('.panel').children[0];
+            const p2 = document.querySelector('.panel').children[1];
+            const x = e.clientX - target.offsetLeft - 1;
+            const y = e.clientY - target.offsetTop - 1;
+            p1.innerText = `x: ${x}`;
+            p2.innerText = `y: ${y}`;
+        }
+
+        //画矩形        
+        ctx.fillStyle = '#f00';
+        ctx.fillRect(0, 0, 150, 75);
+        //画线
+        ctx.fillStyle = '#000';
+        ctx.moveTo(0, 0);
+        ctx.lineTo(100, 100);
+        ctx.arc(300, 300, 30, 0, Math.PI * 3 / 2);
+        ctx.lineWidth = 20;
+        ctx.stroke();
+        //写字
+        ctx.font = '30px 微软雅黑';
+        ctx.fillText('hello canvas', 200, 200);
+        ctx.strokeText('hello canvas', 400, 200);
+        //渐变
+        const grd = ctx.createLinearGradient(500, 0, 700, 0);
+        grd.addColorStop(0, 'red');
+        grd.addColorStop(1, 'white');
+        ctx.fillStyle = grd;
+        ctx.fillRect(500, 100, 200, 300);
+        //canvas图像
+        const img = new Image();
+        img.src = './img_the_scream.jpg';
+        // img.setAttribute('crossOrigin', 'anonymous');
+        img.onload = function(){
+            ctx.drawImage(img, 0, 150);
+            // Tainted canvases may not be exported.
+            // toPic(); 
+        }
+        //canvas转base64
+        toPic();
+        function toPic(){
+            const dataUrl = canvas.toDataURL();
+            console.log(dataUrl);
+            const frag = document.createDocumentFragment();
+            const insertImg = new Image();
+            insertImg.src = dataUrl;
+            insertImg.style.cssText = "display: block; margin: 20px auto;background: #00f";
+            frag.appendChild(insertImg);
+            document.body.appendChild(frag);
+        }
+        console.log('更多参考: https://www.runoob.com/w3cnote/html5-canvas-intro.html');
+    </script>
+</body>
+</html>

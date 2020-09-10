@@ -1,0 +1,110 @@
+IQKeyboardManager实机效果
+
+swift里的@frozen是什么(例子AnyHashable)
+
+在 AT&T 汇编格式中，寄存器名要加上 '%' 作为前缀；而在 Intel 汇编格式中，寄存器名不需要加前缀
+Nop延时用无效指令
+
+eax(accumulate累加),ebx(base基址),ecx(counter计数),edx（余数）,esi（source index源索引）,edi（destination index目标索引）,ebp（base pointer基址指针）,esp（stack pointer堆栈指针）都是通用寄存器
+
+mov[l|w|b] a b 把a的值以[l|w|b]的格式存在b
+l（长字）32位 w（字）16位 b（字节）8位
+
+
+----------------------------------------------------------------
+Webassemblhy
+Vue hooks
+Dsl
+
+-------------------------------------------------------------------
+ios
+多分基类，类处理行为
+状态用枚举
+常量，固定配置用结构
+
+项目分
+Network 网络服务
+Model 接口请求返回的数据模型
+Extension 类拓展
+Constant 固定常量，类似css预处理器的固定主题
+Util 工具类
+
+MVVM架构
+参考RN hooks使状态和组件完全分离
+
+------------------------------------------------------------------
+初始化要固定父节点，避免overflow: hidden无效
+Html {
+    Position: fixed;
+    Left: 0;
+    Top: 0;
+}
+
+------------------------------------------------------------------
+抽象组件，用继承写基组件
+Es6 class
+
+---------------------------------------------------------------
+
+iOS 不在主线程绑定监听
+
+
+-------------------------------------------------------------
+
+Html页面构想
+目的：抽象和整合应用，组织业务，渲染交给框架
+构想基本元素
+App html主应用，贯穿整个应用
+Page html页面，应用呈现的载体
+Component 组件，用于构建html页面
+GlobalData 全局数据，贯穿全局的数据，应用级数据，包括javascript数据和css数据
+Trait 特性，有应用特性、页面特性和组件特性，用于抽象应用、页面、组件功能
+
+1、App html应用
+
+2、Page html页面
+页面数据
+pageStatus 页面状态 
+pageData 页面数据
+pageUIData 页面UI数据
+页面操作
+pageMethod
+页面元素
+html+component
+页面css
+css
+
+3、Component 页面组件
+组件数据
+componentData 组件数据
+componentUIData 组件UI数据
+组件操作
+componentMethod
+组件元素
+html+component
+组件css
+css
+
+4、GlobalData 全局数据
+
+5、Trait 特性
+Router trait 路由，应用级特性
+Page trait 页面，应用级特性
+Template trait 模板，分jsx和template类型，页面级、组件级特性
+Component trait 组件，页面级、组件级特性
+Filter trait 过滤器，页面级、组件级特性
+Watcher trait watch，页面级、组件级特性
+Computed trait computed，页面级、组件级特性
+Directive trait 指令，页面级、组件级特性
+Bind trait 绑定，页面级、组件级特性
+Event trait 事件，应用级、页面级、组件级特性
+Mixin trait 混入，页面级、组件级特性
+Slot trait 插槽，页面级、组件级特性
+Emit trait 触发，页面级、组件级特性
+Css trait css，页面级、组件级特性
+Html trait html元素，页面级、组件级特性
+Asset trait 资源，应用级、页面级、组件级特性
+Custom trait 自定义特性，应用级、页面级、组件级特性
+
+---------------------------------------------------------------------------------
+

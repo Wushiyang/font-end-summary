@@ -1,0 +1,23 @@
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #iframe{
+            width: 500px;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <iframe src="./frame.html" frameborder="1" id="iframe"></iframe>
+    <script>
+        // var w = window.open('http://www.baidu.com', 'baidu');
+        // setTimeout(() => w.close(), 2000);
+        // console.log(w);
+        console.log(iframe.contentWindow);
+    </script>
+</body>
+</html>

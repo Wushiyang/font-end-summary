@@ -1,0 +1,40 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        html,body{
+            margin: 0;
+            width: 100%;
+        }
+        .container{
+            background: #f00;
+            width: 7.5rem;
+            height: 7.5rem;
+            margin: 0 auto;
+            font-size: 0.36rem;
+            text-align: center; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">你好！！！</div>
+    <script>
+        (function(doc, win){
+            var design = 750;
+            var resetScale = function(){
+                var deviceWidth = doc.documentElement.clientWidth || doc.body.clientWidth;
+                if (deviceWidth >= 750) {
+                    doc.documentElement.style.fontSize = '100px';
+                } else {
+                    doc.documentElement.style.fontSize = deviceWidth / design * 100 + 'px';
+                }
+            }
+            window.addEventListener('resize', resetScale, false);
+            window.addEventListener('DOMContentLoaded', resetScale, false);
+        })(document, window);
+    </script>
+</body>
+</html>

@@ -1,3 +1,4 @@
+//TCP服务器例子
 const net = require('net')
 const server = net.createServer()
 let sockets = []
